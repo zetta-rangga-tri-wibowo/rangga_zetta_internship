@@ -96,7 +96,7 @@ const bookDetails = {
 };
 const discountPercentage = 10; // 10%
 const taxPercentage = 5; // 5%
-const stockAmount = 600; // total available stock
+const stockAmount = 50; // total available stock
 const purchaseAmount = 10; // number of books to purchase
 const creditDuration = 6; // credit term length in months
 
