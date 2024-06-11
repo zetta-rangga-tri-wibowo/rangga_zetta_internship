@@ -44,13 +44,17 @@ function purchaseBook(
         // Check if the stock is available adn give purchase message
         let purchaseMessage = "";
 
-        // Check if the stock is available
-        if (remainingStock === 0) {
+        if (remainingStock <= 0) {
             purchaseMessage = "Sorry, the book is out of stock.";
+            purchaseDetails.push({
+                dueDate: formattedDueDate,
+                amountOfPayment: 0,
+                purchaseMessage: purchaseMessage
+            });
+            break;
         }
 
-         // Check if the stock is less than the purchase amount
-        if (remainingStock < purchaseAmount) {
+        if (remainingStock < purchaseAmount && remainingStock > 0) {
             purchaseMessage = `You've purchased ${remainingStock} available books out of ${purchaseAmount} requested.`;
         }
 
@@ -92,8 +96,8 @@ const bookDetails = {
 };
 const discountPercentage = 10; // 10%
 const taxPercentage = 5; // 5%
-const stockAmount = 6; // total available stock
-const purchaseAmount = 2; // number of books to purchase
+const stockAmount = 600; // total available stock
+const purchaseAmount = 10; // number of books to purchase
 const creditDuration = 6; // credit term length in months
 
 const purchaseSummaryData = purchaseBook(
