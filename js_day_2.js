@@ -53,8 +53,8 @@ async function purchaseBook(
                 }
 
                 if (remainingStock < purchaseAmount && remainingStock > 0) {
-                    purchaseMessage = `You've purchased ${remainingStock} available books out of ${purchaseAmount} requested.`;
                 }
+                purchaseMessage = `You've purchased ${remainingStock} available books out of ${purchaseAmount} requested.`;
 
                 remainingStock -= purchaseAmount;
 

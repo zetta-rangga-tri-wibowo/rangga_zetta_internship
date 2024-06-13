@@ -1,12 +1,12 @@
 function purchaseBook(
-    bookDetails,
+    {price, title, author, ...additionalDetails}, // destructing and spread the object of bookOfDetails
     discountPercentage,
     taxPercentage,
     stockAmount,
-    purchaseAmount,
+    bookPurchases,
     creditDuration
 ) {
-    const BOOK_PRICE = bookDetails.price;
+    const BOOK_PRICE = price;
     // Calculate discount amount
     const DISCOUNT = BOOK_PRICE * (discountPercentage / 100);
     // Calculate tax amount
@@ -21,7 +21,7 @@ function purchaseBook(
     const purchaseDetails = [];
 
     // Calculate total amount to be paid
-    const totalAmount = PRICE_AFTER_TAX * purchaseAmount;
+    const totalAmount = PRICE_AFTER_TAX * bookPurchases;
 
     // Calculate monthly payment amount
     const monthlyPaymentAmount = totalAmount / creditDuration;
@@ -30,6 +30,13 @@ function purchaseBook(
     const currentDate = new Date();
     // Get the next month
     const nextMonth = currentDate.getMonth() + 1;
+
+    // Check bookPurchase amount
+    if (bookPurchases <= 0)  {
+        return {
+            error: "Please provide a valid book purchase amount."
+        }
+    }
 
     // Loop through the credit duration
     for (let month = 0; month < creditDuration; month++) {
@@ -44,6 +51,7 @@ function purchaseBook(
         // Check if the stock is available adn give purchase message
         let purchaseMessage = "";
 
+        //
         if (remainingStock <= 0) {
             purchaseMessage = "Sorry, the book is out of stock.";
             purchaseDetails.push({
@@ -53,27 +61,28 @@ function purchaseBook(
             });
             break;
         }
-
-        if (remainingStock < purchaseAmount && remainingStock > 0) {
-            purchaseMessage = `You've purchased ${remainingStock} available books out of ${purchaseAmount} requested.`;
+        // Check if the remaining stock is less than the book purchases
+        if (remainingStock < bookPurchases && remainingStock > 0) {
+            purchaseMessage = `You've purchased ${remainingStock} available books out of ${bookPurchases} requested.`;
+            bookPurchases = remainingStock; // Update the bookPurchases to the remaining stock
         }
 
-        // Update the remaining stock
-        remainingStock -= purchaseAmount;
-
-        // Add purchase details to the array
+        purchaseMessage = `You've purchased ${remainingStock} available books out of ${bookPurchases} requested.`;
         purchaseDetails.push({
             dueDate: formattedDueDate,
             amountOfPayment: monthlyPaymentAmount,
             purchaseMessage: purchaseMessage
         });
+
+        // Update the remaining stock
+        remainingStock -= bookPurchases;
     }
 
     // Store purchase summary
-    let purchaseSummary;
+    let purchaseSummary
     purchaseSummary = {
-        bookTitle: bookDetails.title,
-        author: bookDetails.author,
+        bookTitle: title,
+        author: author,
         price: BOOK_PRICE,
         discountPercentage: discountPercentage,
         amountOfDiscount: DISCOUNT,
@@ -83,6 +92,7 @@ function purchaseBook(
         remainingStock: remainingStock,
         canPurchaseAgain: remainingStock > 0 ? "Yes" : "No",
         purchaseDetails: purchaseDetails,
+        ...additionalDetails // spread additional details
     };
 
     return purchaseSummary;
@@ -94,19 +104,27 @@ const bookDetails = {
     author: "J.K. Rowling",
     price: 20,
 };
-const discountPercentage = 10; // 10%
-const taxPercentage = 5; // 5%
-const stockAmount = 50; // total available stock
-const purchaseAmount = 10; // number of books to purchase
-const creditDuration = 6; // credit term length in months
+const discountPercentage = 0; // 10%
+const taxPercentage = 0; // 5%
+const stockAmount = 5; // total available stock
+const bookPurchases = 5; // number of books to purchase
+const creditDuration = 1; // credit term length in months
 
 const purchaseSummaryData = purchaseBook(
     bookDetails,
     discountPercentage,
     taxPercentage,
     stockAmount,
-    purchaseAmount,
+    bookPurchases,
     creditDuration
 );
 console.log(purchaseSummaryData);
+
+
+// naming variable
+// more describe
+
+// standart pattern camelCase dan Uppercase
+
+// conditonal thinking
 

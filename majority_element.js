@@ -17,7 +17,7 @@ function majorityElement(nums) {
     // Your logic here
     // set initial
     let candidate = 0
-    let count = 0
+    let count = 1
 
     // loop through the array
     for ( let num of nums) {
@@ -30,5 +30,6 @@ function majorityElement(nums) {
     return candidate
 }
 
-console.log(majorityElement([3, 2, 3])); // Output: 3
-console.log(majorityElement([2, 2, 1, 1, 1, 2, 2])); // Output: 2
+// console.log(majorityElement([3, 2, 3])); // Output: 3
+console.log(majorityElement([2, 2, 1, 1, 2, 2, 1, 2, 3, 3, 3, 3])); // Output: 2
+// find how many data in array
