@@ -7,3 +7,8 @@ npm install -g typescript
 ```bash
 tsc filename.ts
 ```
+
+### Run Lite Server
+```bash
+npm start
+```
