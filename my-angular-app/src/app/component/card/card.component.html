@@ -1,0 +1,7 @@
+<!-- Card Component -->
+<div class="card" [class.active]="card.status === 'active'" [class.inactive]="card.status === 'inactive'"> <!--attribute binding -->
+  <h2>{{ card.title }}</h2> <!-- String Interpolation -->
+  <p>{{ card.description }}</p>
+  <p>Status: {{ card.status }}</p>
+  <button class="button-status" (click)="changeStatus()">Change Status</button>  <!-- Event binding -->
+</div>
