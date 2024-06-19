@@ -1,0 +1,12 @@
+<div>
+  <h2>Log Action</h2>
+  <button (click)="clearLog()">Clear Log</button>
+  <div>
+    <h3>Log Messages:</h3>
+    <div *ngIf="messages.length > 0">
+      <ul>
+        <li *ngFor="let message of messages">{{ message }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

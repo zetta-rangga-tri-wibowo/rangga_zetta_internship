@@ -1,0 +1,46 @@
+button {
+  height: 38px;
+  border-radius: 8px;
+}
+
+input {
+  height: 36px;
+  border-radius: 8px;
+}
+
+.container-add-hero {
+  display: flex;
+  flex-direction: column;
+}
+.hero-add {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.input-hero {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.btn-add {
+  background-color: #97BE5A;
+  border-color: #9bce52;
+}
+
+.btn-delete {
+  background-color: #EB5353;
+  border-color: #ef4444;
+}
+
+.list-hero {
+  display: flex;
+  gap: 10px
+}
