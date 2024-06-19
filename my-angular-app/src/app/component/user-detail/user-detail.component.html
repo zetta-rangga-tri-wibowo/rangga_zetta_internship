@@ -1,0 +1,6 @@
+<div *ngIf="user">
+  <h2>Details : </h2>
+  <p>UserName : {{ user.name }}</p>
+  <p>Password : {{ showPassword ? user.password :  '*****'  }}</p>
+  <button (click)="togglePasswordVisibility()">{{ showPassword ? 'Hide' : 'Show' }} Password</button>
+</div>

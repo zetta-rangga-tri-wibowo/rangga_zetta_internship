@@ -1,0 +1,26 @@
+<div class="container-list">
+  <!-- User Form -->
+  <app-user-form (newUser)="addUser($event)"></app-user-form>
+  <div class="box-list">
+      <h2>User List : </h2>
+    <div class="user-list">
+      <!--  Tables    -->
+      <div *ngIf="users.length">
+        <table>
+          <tr class="tr-style" *ngFor="let user of users; index as i" (click)="selectUser(user)">
+            <td>{{ i + 1 }}</td>
+            <td class="td-username">{{ user.name }}</td>
+          </tr>
+        </table>
+      </div>
+      <!--  No User Data    -->
+      <div *ngIf="isLoading">
+        <h2 class="no-user-data" #loadingText>~ Loading User Data ~ </h2>
+      </div>
+      <!-- To test only -->
+      <h2 class="no-user-data">~ Loading Test User Data ~ </h2>
+    </div>
+  </div>
+  <!-- User Detail-->
+  <app-user-detail *ngIf="selectedUser" [user]="selectedUser" ></app-user-detail>
+</div>

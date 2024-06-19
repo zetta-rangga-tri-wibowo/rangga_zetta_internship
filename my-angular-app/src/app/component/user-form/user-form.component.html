@@ -1,0 +1,5 @@
+<h3 class="title">Add New User</h3>
+<input #userName type="text" placeholder="Enter username">
+<input [(ngModel)]="passwordData" (ngModelChange)="onPasswordChange($event)" type="password" placeholder="Enter password">
+<button (click)="addUser(userName.value); userName.value=''">Add</button>
+

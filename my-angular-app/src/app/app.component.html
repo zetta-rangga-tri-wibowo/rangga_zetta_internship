@@ -1,14 +1,5 @@
 <h1>My Angular App</h1>
-
-<!--Add Card Button-->
-<button (click)="addCard()">Add Card</button>
-<!--Reset Card Button-->
-<button (click)="resetCards()">Reset Cards</button>
-
-<!--Card Component-->
-<div *ngFor="let card of cards">
-  <app-card [card]="card" (statusChange)="onStatusChange($event)"></app-card> <!-- $event provide information about the event that was invoked -->
+<div class="container">
+  <app-user-list></app-user-list>
 </div>
-
-
 <router-outlet></router-outlet>
