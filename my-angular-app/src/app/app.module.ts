@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
+import {TodoComponent} from "./component/todo/todo.component";
+import {TodoService} from "./service/todo.service";
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    SharedModule
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

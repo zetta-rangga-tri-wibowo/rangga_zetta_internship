@@ -1,0 +1,10 @@
+<div>
+  <input [(ngModel)]="newTodoTitle" placeholder="New Todo">
+  <button (click)="addTodo()">Add Todo</button>
+</div>
+<ul>
+  <li *ngFor="let todo of todos">
+    <input type="checkbox" [(ngModel)]="todo.completed" (change)="toggleCompletion(todo.id)">
+    <span [ngClass]="{'completed': todo.completed}">{{ todo.title }}</span>
+  </li>
+</ul>
