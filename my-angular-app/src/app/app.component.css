@@ -1,0 +1,34 @@
+.wrapper {
+  background-color: #f4f8fb;
+}
+
+.content {
+  max-width: 1320px;
+  margin: 0 auto;
+
+}
+
+.content-container {
+  display: flex;
+  padding-top: 26px;
+}
+
+.content-filter {
+  display: flex;
+  flex: 0.2;
+}
+
+.wrapper-list-detail {
+  display: flex;
+  flex: 0.9;
+}
+
+.content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-detail {
+  width: 100%;
+}

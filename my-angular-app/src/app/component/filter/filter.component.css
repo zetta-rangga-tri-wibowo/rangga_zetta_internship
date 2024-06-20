@@ -1,0 +1,16 @@
+.search-course {
+    margin-bottom: 20px;
+}
+
+.filter {
+    display: flex;
+    gap: 10px;
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+}
+
+.container-radio-filter {
+  display: flex;
+  flex-direction: column;
+    gap: 10px;
+}
