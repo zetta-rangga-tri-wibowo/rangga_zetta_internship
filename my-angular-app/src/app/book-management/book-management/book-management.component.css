@@ -1,0 +1,19 @@
+.title-app {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.book-management {
+  display: flex;
+  border: 1px solid #ccc;
+  min-height: 100vh;
+}
+
+.book-list {
+  width: 50%;
+  border-right: 1px solid #ccc;
+}
+
+.book-details {
+  width: 50%;
+}

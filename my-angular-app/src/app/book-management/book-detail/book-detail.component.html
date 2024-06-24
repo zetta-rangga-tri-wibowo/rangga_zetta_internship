@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <h2>Book Selected</h2>
+  <div class="close-btn" *ngIf="selectedBook">
+    <button class="btn" (click)="removeDetailBook()">Close</button>
+  </div>
+  <!--<div class="book-detail" *ngIf="selectedBook as selectedBook">-->
+    <div class="book-details" *ngIf="selectedBook; else noBookSelected">
+      <div>
+        <div class="image-fake"></div>
+      </div>
+      <div>
+        <div>
+          <h2>{{ selectedBook.name }}</h2>
+          <p>Author: {{ selectedBook.author }}</p>
+          <p>Publisher: {{ selectedBook.publisher }}</p>
+          <p>Publish Date: {{ selectedBook.publishDate }}</p>
+        </div>
+        <div>
+          <p>Description: {{ selectedBook.description }}</p>
+        </div>
+      </div>
+    </div>
+    <ng-template #noBookSelected>
+      <p class="notification">You don't have any selected book yet. Please select from the list of books available.</p>
+    </ng-template>
+</div>

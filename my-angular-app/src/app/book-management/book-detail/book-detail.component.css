@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.notification {
+  background-color: #FDF7DF;
+  border: 1px solid #FEEC6F;
+  color: #C9971C;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.image-fake {
+  min-width: 150px;
+  height: 150px;
+  background-color: #F5F5F5;
+  border-radius: 4px;
+}
+
+.book-details {
+  display: flex;
+  gap: 10px;
+}
+
+.close-btn {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    background-color: #fa235f;
+    border: 1px solid #fa235f;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
