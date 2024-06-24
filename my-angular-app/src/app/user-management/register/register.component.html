@@ -1,0 +1,61 @@
+<div>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="id">ID:</label>
+      <input type="number" id="id" formControlName="id">
+    </div>
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name">
+    </div>
+    <div>
+      <label for="age">Age:</label>
+      <input type="number" id="age" formControlName="age">
+    </div>
+    <div class="gender-wrapper">
+      <label>Gender:</label>
+      <input type="radio" id="male" formControlName="gender" value="male">
+      <label for="male">Male</label>
+      <input type="radio" id="female" formControlName="gender" value="female">
+      <label for="female">Female</label>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email">
+    </div>
+    <div>
+      <label for="position">Position:</label>
+      <select id="position" formControlName="position">
+        <option value="">--Please choose an option--</option>
+        <option value="manager">Manager</option>
+        <option value="developer">Developer</option>
+        <!-- Add more options as needed -->
+      </select>
+    </div>
+    <div>
+      <label for="marital-status">Marital Status:</label>
+      <select id="marital-status" formControlName="maritalStatus">
+        <option value="">--Please choose an option--</option>
+        <option value="single">Single</option>
+        <option value="married">Married</option>
+        <!-- Add more options as needed -->
+      </select>
+    </div>
+    <fieldset formArrayName="addresses">
+      <legend>Addresses:</legend>
+      <button (click)="onAddAddress()">Add Address</button>
+      <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
+        <label for="address">Address:</label>
+        <input type="text" id="address" formControlName="address">
+        <label for="zip-code">Zip code:</label>
+        <input type="number" id="zip-code" formControlName="zipCode">
+        <label for="city">City:</label>
+        <input type="text" id="city" formControlName="city">
+        <label for="country">Country:</label>
+        <input type="text" id="country" formControlName="country">
+        <button (click)="onDeleteAddress(i)">Delete Address</button>
+      </div>
+    </fieldset>
+    <input type="submit" value="Submit">
+  </form>
+</div>

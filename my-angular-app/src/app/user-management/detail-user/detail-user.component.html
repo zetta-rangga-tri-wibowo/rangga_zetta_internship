@@ -1,0 +1,20 @@
+<div *ngIf="user">
+  <button (click)="backToList()">List User</button>
+  <button (click)="deleteUser()">delete</button>
+</div>
+<div *ngIf="user">
+  <h2>{{ user.name }}</h2>
+  <p>ID: {{ user.id }}</p>
+  <p>Age: {{ user.age }}</p>
+  <p>Gender: {{ user.gender }}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Position: {{ user.position }}</p>
+  <p>Marital Status: {{ user.maritalStatus }}</p>
+  <div *ngFor="let address of user.addresses">
+    <h3>Address:</h3>
+    <p>{{ address.address }}</p>
+    <p>Zip Code: {{ address.zipCode }}</p>
+    <p>City: {{ address.city }}</p>
+    <p>Country: {{ address.country }}</p>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  background-color: #FFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper-list {
+  display: flex;
+  gap: 22px
+}
