@@ -17,6 +17,9 @@ const routes: Routes = [
   },
   {
     path: 'register', component: RegisterComponent
+  },
+  {
+    path: 'edit/:id', component: RegisterComponent
   }
 ];
 

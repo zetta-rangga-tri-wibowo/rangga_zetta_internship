@@ -20,14 +20,14 @@ export class UserService {
     return users.find(user => user.id === id);
   }
 
-  // editUser(id: number, updatedUser: User) {
-  //   const users = this.usersSubject.getValue();
-  //   const index = users.findIndex(user => user.id === id);
-  //   if (index !== -1) {
-  //     users[index] = updatedUser;
-  //     this.usersSubject.next(users);
-  //   }
-  // }
+  editUser(id: number, updatedUser: User) {
+    const users = this.usersSubject.getValue();
+    const index = users.findIndex(user => user.id === id);
+    if (index !== -1) {
+      users[index] = updatedUser;
+      this.usersSubject.next(users);
+    }
+  }
   //
   deleteUser(id: number) {
     const users = this.usersSubject.getValue();

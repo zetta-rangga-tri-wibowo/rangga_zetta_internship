@@ -1,6 +1,7 @@
 <div *ngIf="user">
   <button (click)="backToList()">List User</button>
   <button (click)="deleteUser()">delete</button>
+  <button (click)="editUser()">Edit</button>
 </div>
 <div *ngIf="user">
   <h2>{{ user.name }}</h2>

@@ -16,6 +16,9 @@ export class DetailUserComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.user = this.userService.getUserById(id);
+    if (!this.user) {
+      this.router.navigate(['/users']);
+    }
   }
 
   backToList() {
@@ -27,6 +30,12 @@ export class DetailUserComponent implements OnInit {
     if (this.user) {
       this.userService.deleteUser(this.user.id);
       this.router.navigate(['/users']);
+    }
+  }
+
+  editUser() {
+    if (this.user) {
+      this.router.navigate(['/edit', this.user.id]);
     }
   }
 }
