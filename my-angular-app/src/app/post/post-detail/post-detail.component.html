@@ -1,0 +1,15 @@
+<div class="wrapper-detail">
+  <div class="action-post">
+    <!-- Navigate To Post Page  -->
+    <button class="btn-post-list" (click)="backToPostList()">Back To Post</button>
+    <!-- Navigate To Post Page  -->
+    <!--  Deleted Post  -->
+    <button class="btn-delete" (click)="deletePost()">Delete</button>
+    <!--  Deleted Post  -->
+  </div>
+  <!-- Post Data -->
+  <app-post-card></app-post-card>
+  <!-- Post Data -->
+  <!-- Loading State -->
+  <div *ngIf="loadingPost">Loading...</div>
+</div>

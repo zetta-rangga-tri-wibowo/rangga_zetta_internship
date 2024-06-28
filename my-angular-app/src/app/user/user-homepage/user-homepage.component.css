@@ -1,0 +1,11 @@
+.wrapper-user-page {
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 2rem;
+}
+
+.title-page {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,31 @@
+.wrapper-detail {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.action-post {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-delete {
+    background-color: #ee154f;
+    color: white;
+    padding: 8px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.btn-post-list {
+    background-color: #737373;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}

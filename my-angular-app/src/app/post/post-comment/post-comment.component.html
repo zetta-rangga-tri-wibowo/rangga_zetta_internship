@@ -1,0 +1,11 @@
+<div *ngFor="let comments of commentPost">
+  <div class="comment-card">
+    <div class="header-comment">
+      <p>@{{comments.name | truncate:15 }}</p>
+    </div>
+    <div class="comment-body">
+      <p>Comment :</p>
+      <p>{{comments.body}}</p>
+    </div>
+  </div>
+</div>

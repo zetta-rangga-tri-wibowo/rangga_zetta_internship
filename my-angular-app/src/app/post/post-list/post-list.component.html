@@ -1,0 +1,22 @@
+<div>
+  <div class="wrapper-post-list">
+    <div *ngFor="let post of posts">
+      <div class="post-card">
+        <div class="wrapper-image">
+          <img [src]='placeholder' alt="Post Image" />
+        </div>
+        <div class="header-post">
+          <p class="header-title">{{ post.title.length > 30 ? (post.title | truncate:30) : post.title }}</p>
+        </div>
+        <div class="wrapper-description">
+          <p>Description: {{post.body | truncate:100 }}</p>
+        </div>
+        <div class="post-card-action">
+        </div>
+        <div class="wrapper-view-detail">
+          <p class="view-details" (click)="detailPost(post.id)">View Details -></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

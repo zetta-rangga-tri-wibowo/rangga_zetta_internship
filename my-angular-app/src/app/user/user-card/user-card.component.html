@@ -1,0 +1,8 @@
+<div class="user-card">
+  <!-- BUILT IN PIPE -->
+  <h2>{{ user?.name | uppercase }}</h2>
+  <!-- CUSTOM PIPE -->
+  <p>Age Now: {{ user ? (user.dateBirth | countAge) : 'N/A' }}</p>
+  <!-- Attribute Binding -->
+  <p [style.border]="border">Net Worth: {{ user?.balance | currency:'USD':true }}</p>
+</div>

@@ -1,0 +1,22 @@
+<div class="wrapper-post-page">
+  <div class="wrapper-title">
+    <h1 class="post-title">Blog Post</h1>
+    <!--  Modal  -->
+    <dialog class="dialog-wrapper" #dialog>
+      <div>
+        <h2 class="title-dialog">Add Post</h2>
+      </div>
+      <div class="wrapper-form">
+        <app-post-form (closeDialog)="dialog.close()"></app-post-form>
+      </div>
+    </dialog>
+    <!--  Modal  -->
+    <div>
+      <button class="add-post-btn" (click)="dialog.showModal()">Add Post</button>
+    </div>
+  </div>
+  <div class="wrapper-post-list">
+    <div *ngIf="loadingPosts">Loading Post....</div>
+    <app-post-list [posts]="posts"></app-post-list>
+  </div>
+</div>

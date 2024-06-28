@@ -1,0 +1,39 @@
+<div class="wrapper">
+  <div *ngIf="postData">
+    <!--  Modal  -->
+    <dialog class="dialog-wrapper" #dialog>
+      <div>
+        <h2 class="title-dialog">Edit Post</h2>
+      </div>
+      <div class="wrapper-form">
+        <app-post-form (closeDialog)="dialog.close()" [postId]="postData.id"></app-post-form>
+      </div>
+    </dialog>
+    <!--  END Modal  -->
+    <!--  Post  -->
+    <div class="post-card">
+      <div class="header-post">
+        <div>
+          <p class="title-post">{{postData.title }}</p>
+          <p>by: {{postData.userId}}</p>
+        </div>
+        <div class="post-card-action">
+          <button class="btn-edit-post" (click)="dialog.showModal()">Edit</button>
+        </div>
+      </div>
+      <div>
+        <p>Description: </p>
+        <p>{{postData.body}}</p>
+      </div>
+    </div>
+  </div>
+  <!-- END POST -->
+
+  <!-- Comment -->
+  <h3 class="comment-title">{{ commentPosts.length }} Comments</h3>
+  <button class="comment-toggle" (click)="toggleComments()">{{ showComments ? "Hide" : "Show" }}</button>
+  <div *ngIf="showComments"  class="wrapper-comment">
+    <app-post-comment [commentPost]="commentPosts"></app-post-comment>
+  </div>
+  <!-- END Comment -->
+</div>
