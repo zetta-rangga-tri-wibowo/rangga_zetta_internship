@@ -1,0 +1,22 @@
+{
+  "defaultSeverity": "error",
+  "extends": [],
+  "jsRules": {},
+  "rules": {
+    "indent": [true, "spaces", 2],
+    "curly": [true, "all"],
+    "max-line-length": [true, 140],
+//    "space-before-blocks": [true, "always"],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-type"
+    ]
+//    "brace-style": [true, "1tbs"]
+  },
+  "rulesDirectory": []
+}
