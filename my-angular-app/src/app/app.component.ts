@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-angular-app';
+  @ViewChild('sidenav', { static: true }) sidenav: any;
+
+  listMenu = [
+    {
+      title: 'Movies',
+      icon: 'movie',
+      link: '/movie'
+    },
+    {
+      title: 'Artists',
+      icon: 'groups',
+      link: '/actress'
+    },
+  ]
+
+  onToggleSidenav() {
+    this.sidenav.toggle();
+  }
 }

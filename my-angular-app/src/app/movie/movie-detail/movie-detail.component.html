@@ -1,0 +1,41 @@
+<div *ngIf="paramId">
+  <div class="movie-wrapper">
+    <mat-card class="movie-detail">
+      <img [src]="placeholderImg" alt="movie poster"/>
+      <div>
+        <div>
+          <mat-card-title>{{ movieDetail?.title }}</mat-card-title>
+          <mat-chip>{{ movieDetail?.year }}</mat-chip>
+          <mat-chip>{{ movieDetail?.genre }}</mat-chip>
+          <div>Rating :{{ movieDetail?.rating }}</div>
+          <div>
+            <h3>Overview</h3>
+            <p>{{ movieDetail?.response }}</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-card>
+    <!--    <app-movie-card [movieDetail]="movieDetail"></app-movie-card>-->
+  </div>
+  <div>
+    <div>Casting</div>
+    <div class="test" *ngFor="let actor of actorData">
+      <app-actress-casting [data]="actor"></app-actress-casting>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.movie-list-card {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+}

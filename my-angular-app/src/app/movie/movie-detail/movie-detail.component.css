@@ -1,0 +1,27 @@
+.movie-detail {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  padding: 1.5rem;
+  /*border: 1px solid red;*/
+}
+
+.casting-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.wrapper-casting {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.test {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+}
