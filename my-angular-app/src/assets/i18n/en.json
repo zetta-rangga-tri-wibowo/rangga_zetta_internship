@@ -1,0 +1,15 @@
+{
+  "user-list": "User List",
+  "translate": "Translate",
+  "male": "Male",
+  "female": "Female",
+  "add-user": "Add User",
+  "last-name": "Last Name",
+  "first-name": "First Name",
+  "email": "Email",
+  "gender": "Gender",
+  "birth-date": "Date of Birth",
+  "cancel": "Cancel",
+  "save": "Save",
+  "error-field": "Please fill all the required fields"
+}

@@ -1,0 +1,80 @@
+<h1 mat-dialog-title>{{ 'add-user' | translate }}</h1>
+<mat-dialog-content>
+  <form [formGroup]="myForm" (ngSubmit)="submit()" id="myForm">
+    <div class="wrapper-input">
+      <div>
+        <mat-radio-group
+          class="wrapper-radio-group"
+          formControlName="civility"
+          name="civility"
+        >
+          <mat-radio-button value="mr" color="primary">Mr</mat-radio-button>
+          <mat-radio-button value="mrs" color="accent">Mrs</mat-radio-button>
+          <!--          <span *ngIf="myForm.get('civility')?.invalid">Please Select One Civility</span>-->
+        </mat-radio-group>
+      </div>
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="'last-name' | translate"
+            formControlName="lastName"
+            name="lastName"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="'first-name' | translate"
+            formControlName="firstName"
+            name="firstName"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="'email' | translate"
+            formControlName="email"
+            name="email"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>{{ 'gender' | translate }}</mat-label>
+          <mat-select formControlName="gender" name="gender">
+            <mat-option value="male">{{ 'male' | translate }}</mat-option>
+            <mat-option value="female">{{ 'female' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="'birth-date' | translate"
+            [matDatepicker]="myDatePicker"
+            formControlName="dateOfBirth"
+            name="dataOfBirth"
+            readonly
+          />
+          <mat-datepicker-toggle
+            [for]="myDatePicker"
+            matSuffix
+          ></mat-datepicker-toggle>
+          <mat-datepicker #myDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="closeDialog()" color="warn">{{ 'cancel' | translate }}</button>
+  <button mat-raised-button color="primary" type="submit" form="myForm">
+    {{ 'save' | translate }}
+  </button>
+</mat-dialog-actions>

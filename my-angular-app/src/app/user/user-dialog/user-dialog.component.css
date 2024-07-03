@@ -1,0 +1,16 @@
+.wrapper-input {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wrapper-radio-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}

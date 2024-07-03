@@ -1,0 +1,15 @@
+{
+  "user-list": "Liste d'utilisateur",
+  "add-user": "Ajouter un utilisateur",
+  "translate": "Traduire",
+  "male": "Homme",
+  "female": "Femme",
+  "last-name": "Nom",
+  "first-name": "Prénom",
+  "email": "Email",
+  "gender": "Sexe",
+  "birth-date": "Date de naissance",
+  "cancel": "Annuler",
+  "save": "Enregistrer",
+  "error-field": "Ce champ est obligatoire"
+}

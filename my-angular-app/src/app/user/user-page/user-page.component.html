@@ -1,0 +1,45 @@
+<div class="user-page-wrapper">
+  <div class="title-page">
+    <h1>{{ "user-list" | translate }}</h1>
+    <div class="right-button">
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu">{{ 'translate' | translate }}</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="switchLanguage('en')">English</button>
+          <button mat-menu-item (click)="switchLanguage('fr')">French</button>
+        </mat-menu>
+      </div>
+      <button mat-raised-button (click)="openDialog()" color="accent">{{ "add-user" | translate }}
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <hr>
+  <div class="card-wrapper" *ngFor="let user of users">
+    <mat-card>
+      <mat-card-title>{{ user.civility | uppercase }} {{ user.lastName }} {{ user.firstName }}</mat-card-title>
+      <mat-card-content>
+        <div >
+          <p class="gender-wrapper">
+            {{ user.gender === 'male' ? ('male' | translate) : ('female' | translate) }}
+            <span>
+              <mat-icon>{{ user.gender === "male" ? "male" : "female" }}</mat-icon>
+            </span>
+          </p>
+          <p>
+            <span>{{ user.email }}</span>
+          </p>
+          <p>
+            <span>{{ user.dateOfBirth | date:'dd/MM/yyyy' }}</span>
+          </p>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+<!--        <button mat-raised-button (click)="editUser(user.id)" color="primary">{{ "edit" | translate }}-->
+<!--          <mat-icon>edit</mat-icon>-->
+<!--        </button>-->
+      </mat-card-footer>
+    </mat-card>
+    <p></p>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+.user-page-wrapper {
+  padding: 2rem;
+}
+.title-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-button {
+  display: flex;
+  gap: 1rem;
+}
+
+hr {
+  margin-bottom: 1rem;
+}
+
+mat-card {
+  max-width: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-wrapper {
+}
+
+.gender-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
