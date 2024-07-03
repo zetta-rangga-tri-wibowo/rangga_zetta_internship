@@ -1,0 +1,112 @@
+<div class="app-wrapper">
+  <h1>{{ title }}</h1>
+
+  <section class="example-container mat-elevation-z8" tabindex="0">
+    <!--  FILTER ADDITIONAL  -->
+<!--    <form>-->
+
+<!--      <mat-form-field class="example-full-width">-->
+<!--        <mat-label>Status</mat-label>-->
+<!--        <input type="text"-->
+<!--               placeholder="Pick one"-->
+<!--               aria-label=""-->
+<!--               matInput-->
+<!--               [formControl]="controlStatus"-->
+<!--               [matAutocomplete]="auto"-->
+<!--        >-->
+<!--        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">-->
+<!--          <mat-option *ngFor="let option of filterOptions | async" [value]="option">{{option}}</mat-option>-->
+<!--        </mat-autocomplete>-->
+<!--      </mat-form-field>-->
+<!--    </form>-->
+
+    <table mat-table [dataSource]="dataSources" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef> ID</th>
+        <td mat-cell *matCellDef="let element"> {{ element?._id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="_idFilter">
+        <th mat-header-cell *matHeaderCellDef>
+        </th>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Name
+        </th>
+        <td mat-cell
+            *matCellDef="let element">{{ element?.civility }} {{ element?.fullName }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="fullNameFilter">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field>
+            <mat-label>Name Filter</mat-label>
+            <input matInput [(ngModel)]="nameFilter" (keyup)="filterName($event)" placeholder="Name">
+          </mat-form-field>
+        </th>
+      </ng-container>
+
+      <!--  Email Colum  -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element"> {{ element?.email }}</td>
+      </ng-container>
+      <ng-container matColumnDef="emailFilter">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field>
+            <mat-label>Email Filter</mat-label>
+            <input matInput [(ngModel)]="emailFilter" (keyup)="filterEmail($event)" placeholder="Email">
+          </mat-form-field>
+        </th>
+      </ng-container>
+
+
+      <!-- Company Column -->
+      <ng-container matColumnDef="userType">
+        <th mat-header-cell *matHeaderCellDef> User Type</th>
+        <td mat-cell *matCellDef="let element"> {{ element?.company.user_type }}</td>
+      </ng-container>
+      <ng-container matColumnDef="userTypeFilter">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field>
+            <mat-label>User Type Filter</mat-label>
+            <input matInput [(ngModel)]="userTypeFilter" (keyup)="filterUserType($event)" placeholder="User Type">
+          </mat-form-field>
+        </th>
+      </ng-container>
+
+      <!-- User Status Column -->
+      <ng-container matColumnDef="userStatus">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="filter">
+            Status
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon *ngIf="element?.user_status === 'active'; else pendingIcon" style="color:green;">check</mat-icon>
+          <ng-template #pendingIcon>
+            <mat-icon style="color:red;">close</mat-icon>
+          </ng-template>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="userStatusFilter">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field class="filter-status">
+            <mat-select [(value)]="statusFilter" (selectionChange)="filterStatus()">
+              <mat-option value="">All</mat-option>
+              <mat-option value="active">Active</mat-option>
+              <mat-option value="pending">Pending</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </th>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnFilters"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </section>
+</div>

@@ -1,0 +1,32 @@
+.app-wrapper {
+  padding: 2rem;
+}
+
+h1 {
+  color: #369;
+  font-size: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+
+.example-container {
+  height: 550px;
+  overflow: auto;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+mat-form-field {
+  width: 150px;
+}
+
+.filter-status {
+  width: 80px;
+}
