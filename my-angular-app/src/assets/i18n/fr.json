@@ -11,5 +11,7 @@
   "birth-date": "Date de naissance",
   "cancel": "Annuler",
   "save": "Enregistrer",
-  "error-field": "Ce champ est obligatoire"
+  "error-field": "Ce champ est obligatoire",
+  "success-add": "Utilisateur ajouté avec succès",
+  "success-edit": "Utilisateur modifié avec succès"
 }

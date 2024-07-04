@@ -11,5 +11,7 @@
   "birth-date": "Date of Birth",
   "cancel": "Cancel",
   "save": "Save",
-  "error-field": "Please fill all the required fields"
+  "error-field": "Please fill all the required fields",
+  "success-add": "User added successfully",
+  "success-edit": "User edited successfully"
 }

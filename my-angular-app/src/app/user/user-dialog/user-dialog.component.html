@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>{{ 'add-user' | translate }}</h1>
+<h1 mat-dialog-title>{{ data.type === "add" ? ('add-user' | translate) : ('edit-user' | translate) }}</h1>
 <mat-dialog-content>
   <form [formGroup]="myForm" (ngSubmit)="submit()" id="myForm">
     <div class="wrapper-input">
@@ -10,7 +10,6 @@
         >
           <mat-radio-button value="mr" color="primary">Mr</mat-radio-button>
           <mat-radio-button value="mrs" color="accent">Mrs</mat-radio-button>
-          <!--          <span *ngIf="myForm.get('civility')?.invalid">Please Select One Civility</span>-->
         </mat-radio-group>
       </div>
       <div>

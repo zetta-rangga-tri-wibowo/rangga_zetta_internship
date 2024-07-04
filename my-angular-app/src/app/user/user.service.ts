@@ -10,22 +10,7 @@ export class UserService {
   private _users = new BehaviorSubject<User[]>([]);
   users$ = this._users.asObservable();
 
-  constructor() {
-    const dummyUser: User = {
-      civility: 'mr',
-      lastName: 'Doe',
-      firstName: 'John',
-      email: 'john.doe@example.com',
-      gender: 'male',
-      dateOfBirth: new Date(1990, 1, 1),
-      id: 1
-    };
-    this.addUser(dummyUser);
-  }
-
-  changeLanguage(lang: string) {
-    // this.translate(lang);
-  }
+  constructor() {}
 
   addUser(user: User) {
     const currentValue = this._users.value;
@@ -33,8 +18,21 @@ export class UserService {
     this._users.next(updatedValue);
   }
 
-  getUsers(): User[] {
-    return this._users.value;
+  getUser(id: number): User {
+    return <User>this._users.value.find( user => user.id === id );
+  }
+
+  editUser(user: User) {
+    const users = this._users.value;
+    const index = users.findIndex( u => u.id === user.id );
+    users[index] = user;
+    this._users.next(users);
+  }
+
+  deleteUser(id: number) {
+    const users = this._users.value;
+    const updatedUsers = users.filter( user => user.id !== id );
+    this._users.next(updatedUsers);
   }
 
 }
