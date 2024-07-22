@@ -1,0 +1,46 @@
+<div>
+  <table mat-table [dataSource]="dataSource" class="w-full border-4 border-[#607D8A]" >
+    <ng-container matColumnDef="short_name">
+      <th class="border border-[#696969]" mat-header-cell *matHeaderCellDef>Commercial Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.short_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="long_name">
+      <th class="border border-[#696969]" *matHeaderCellDef> Legal Name</th>
+      <td *matCellDef="let school"> {{ school.long_name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="school_siret">
+      <th class="border border-[#696969]" *matHeaderCellDef>City</th>
+      <td *matCellDef="let school"> {{ school.school_siret }}</td>
+    </ng-container>
+    <ng-container matColumnDef="school_address">
+      <th class="border border-[#696969]" *matHeaderCellDef>RNCP Titles - Preparation Center</th>
+      <td *matCellDef="let school"> {{ school.school_address }}</td>
+    </ng-container>
+    <ng-container matColumnDef="preparation_center_ats">
+      <th class="border border-[#696969]" *matHeaderCellDef> preparation_center_ats</th>
+      <td *matCellDef="let school"> {{ school.preparation_center_ats }}</td>
+    </ng-container>
+    <ng-container matColumnDef="certifier_ats">
+      <th class="border border-[#696969]" *matHeaderCellDef>NCP Titles - Preparation Certifier</th>
+      <td *matCellDef="let school"> {{ school.certifier_ats }}</td>
+    </ng-container>
+    <ng-container matColumnDef="class">
+      <th class="border border-[#696969]" *matHeaderCellDef>Class</th>
+      <td *matCellDef="let school"> {{ school.class }}</td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th class="border border-[#696969]" *matHeaderCellDef>Status</th>
+      <td *matCellDef="let school"> {{ school.status }}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th class="border border-[#696969] !max-w-[1%]" *matHeaderCellDef>Action</th>
+      <td *matCellDef="let school">
+        <mat-icon>pen</mat-icon>
+        <button mat-button>Edit</button>
+        <!--        <button mat-button (click)="deleteSchool(school)">Delete</button>-->
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

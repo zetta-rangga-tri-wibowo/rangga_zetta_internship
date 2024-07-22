@@ -1,0 +1,177 @@
+<div>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="w-full border-4 border-[#607D8A]"
+  >
+    <ng-container matColumnDef="short_name">
+      <th
+        class="border border-[#696969] font-bold width-short-name"
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        Commercial Name
+      </th>
+      <td mat-cell *matCellDef="let element" class="border border-[#696969]">
+        {{ element.short_name }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="long_name">
+      <th
+        class="border border-[#696969] width-column-long-name"
+        *matHeaderCellDef
+      >
+        Legal Name
+      </th>
+      <td *matCellDef="let school" class="border border-[#696969]">
+        {{ school.long_name }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="school_address">
+      <th class="border border-[#696969] width-column" *matHeaderCellDef>
+        City
+      </th>
+      <td *matCellDef="let school" class="border border-[#696969]">
+        {{ school.school_address[0].city }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="preparation_center_ats">
+      <th
+        class="border border-[#696969] width-column-preparation"
+        *matHeaderCellDef
+      >
+        RNCP Titles - Preparation Center
+      </th>
+      <td
+        *matCellDef="let school"
+        class="custom-eclipse border border-[#696969]"
+      >
+        <div class="flex flex-row gap-1 items-center px-2">
+          <div
+            *ngFor="let data of school.preparation_center_ats.slice(0, 2)"
+            [matTooltip]="school"
+            class="flex flex-row gap-1 flex-wrap"
+          >
+            <span class="bg-amber-400 rounded">
+              {{ data.rncp_title_id.short_name }}
+            </span>
+          </div>
+          <!-- <span
+            *ngIf="
+              school.preparation_center_ats.length > 0 &&
+              school.preparation_center_ats.length < 2
+            "
+            class="bg-amber-400 rounded py-[3px] px-[5px] w-full"
+          >
+            ...
+          </span> -->
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="certifier_ats">
+      <th
+        class="border border-[#696969] width-column-certifier"
+        *matHeaderCellDef
+      >
+        RNCP Titles - Preparation Certifier
+      </th>
+      <td
+        *matCellDef="let school"
+        class="custom-eclipse border border-[#696969]"
+      >
+        <div class="flex flex-row gap-1 items-center px-2" *ngIf="school?.certifierAts?.length">
+          <div *ngFor="let data of school.certifierAts" class="">
+            <span class="bg-amber-400 rounded py-[3px] px-[5px]">
+              {{ data.short_name }}
+            </span>
+          </div>
+          <!-- <span
+            *ngIf="school.certifier_ats.length > 0"
+            class="bg-amber-400 rounded py-[3px] px-[5px] w-full"
+          >
+            ...
+          </span> -->
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="class">
+      <th class="border border-[#696969] width-column" *matHeaderCellDef>
+        Class
+      </th>
+      <td
+        *matCellDef="let school"
+        class="custom-eclipse border border-[#696969]"
+      >
+        <div class="flex flex-row gap-1 items-center px-2">
+          <div *ngFor="let data of school.certifier_ats.slice(0, 1)" class="">
+            <span class="bg-amber-400 rounded py-[3px] px-[5px]">
+              {{ data.short_name }}
+            </span>
+          </div>
+          <!-- <span
+            *ngIf="school.certifier_ats.length > 0"
+            class="bg-amber-400 rounded py-[3px] px-[5px] w-full"
+          >
+            ...
+          </span> -->
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th class="border border-[#696969] width-column-status" *matHeaderCellDef>
+        Status
+      </th>
+      <td *matCellDef="let school" class="border border-[#696969]">
+        <div class="flex flex-row items-center justify-center gap-2">
+          <div class="">
+            <div
+              class="flex flex-row gap-1 flex-wrap items-center justify-center bg-green-400 w-6 h-6 rounded-full"
+            >
+              <span class="text-center items-center">
+                {{ school.preparation_center_ats ? "CP" : null }}
+              </span>
+            </div>
+          </div>
+          <div
+            *ngIf="school.certifier_ats"
+            class="flex flex-row gap-1 flex-wrap items-center justify-center bg-amber-400 w-6 h-6 rounded-full"
+          >
+            <span class="text-center">
+              {{ school.certifier_ats ? "CR" : null }}
+            </span>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th class="border border-[#696969] !max-w-[1%]" *matHeaderCellDef>
+        Action
+      </th>
+      <td *matCellDef="let school" class="border border-[#696969]">
+        <mat-icon>pen</mat-icon>
+        <button mat-button>Edit</button>
+      </td>
+    </ng-container>
+    <tr
+      mat-header-row
+      *matHeaderRowDef="displayedColumns"
+      class="border border-[#696969]"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      class="border border-[#696969]"
+    ></tr>
+  </table>
+  <div *ngIf="loading" class="flex justify-center items-center pt-64 pb-64">
+    <ng-container *ngIf="loading">
+      <mat-spinner></mat-spinner>
+    </ng-container>
+  </div>
+  <mat-paginator
+    [length]="totalSchools"
+    [pageSize]="pagination.limit"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
+</div>

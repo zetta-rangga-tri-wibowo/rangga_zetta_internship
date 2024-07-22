@@ -1,0 +1,48 @@
+<!-- *************** Section: User Form *************** -->
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <!-- *************** Section: Form Container *************** -->
+  <div class="flex flex-col gap-2">
+
+    <!-- *************** Section: Civility Selection *************** -->
+    <mat-radio-group
+      class="flex gap-3"
+      aria-label="Select your civility"
+      formControlName="civility">
+      <!-- *************** Radio Button for Mr *************** -->
+      <mat-radio-button value="MR">Mr</mat-radio-button>
+      <!-- *************** Radio Button for Mrs *************** -->
+      <mat-radio-button value="MRS">Mrs</mat-radio-button>
+    </mat-radio-group>
+
+    <!-- *************** Section: Form Fields *************** -->
+    <div class="flex flex-col gap-2">
+
+      <!-- *************** Form Field: First Name *************** -->
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <!-- *************** Input for First Name *************** -->
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+
+      <!-- *************** Form Field: Last Name *************** -->
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <!-- *************** Input for Last Name *************** -->
+        <input matInput formControlName="lastName">
+      </mat-form-field>
+
+      <!-- *************** Form Field: Email *************** -->
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <!-- *************** Input for Email *************** -->
+        <input matInput formControlName="email">
+      </mat-form-field>
+    </div>
+
+    <!-- *************** Section: Submit Button *************** -->
+    <div>
+      <!-- *************** Button to Submit Form *************** -->
+      <button mat-raised-button type="submit">Add User</button>
+    </div>
+  </div>
+</form>

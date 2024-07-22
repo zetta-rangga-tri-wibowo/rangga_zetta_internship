@@ -1,0 +1,12 @@
+<div>
+  <mat-tab-group (selectedTabChange)="onTabClick($event)">
+    <mat-tab label="Active Schools of Active Classes">
+      Active Schools of Active Classes
+      <app-table-school [tabIndex]="currentTabIndex"></app-table-school>
+    </mat-tab>
+    <mat-tab label="Active Schools of Non Active Classes">
+      Active Schools of Non Active Classes
+      <app-table-school [tabIndex]="currentTabIndex"></app-table-school>
+    </mat-tab>
+  </mat-tab-group>
+</div>

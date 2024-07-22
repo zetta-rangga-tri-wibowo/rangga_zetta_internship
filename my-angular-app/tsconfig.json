@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -20,8 +19,10 @@
     "module": "es2020",
     "lib": [
       "es2020",
-      "dom"
-    ]
+      "dom",
+      "esnext.asynciterable"
+    ],
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -29,11 +30,24 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "rules" : {
-    "indent": [true, "spaces", 2],
-    "curly": [true, "all"],
-    "max-line-length": [true, 140],
-    "space-before-blocks": [true, "always"],
+  "rules": {
+    "indent": [
+      true,
+      "spaces",
+      2
+    ],
+    "curly": [
+      true,
+      "all"
+    ],
+    "max-line-length": [
+      true,
+      140
+    ],
+    "space-before-blocks": [
+      true,
+      "always"
+    ],
     "whitespace": [
       true,
       "check-branch",
@@ -43,6 +57,9 @@
       "check-separator",
       "check-type"
     ],
-    "brace-style": [true, "1tbs"]
+    "brace-style": [
+      true,
+      "1tbs"
+    ]
   }
 }

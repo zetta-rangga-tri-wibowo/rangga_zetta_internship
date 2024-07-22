@@ -1,0 +1,39 @@
+.width-short-name {
+  width: 12%;
+}
+
+.width-column-long-name {
+  width: 12%;
+}
+
+.width-column {
+  width: 5%;
+}
+
+.width-column-preparation {
+  width: 10% !important;
+}
+
+.width-column-certifier {
+  width: 10%;
+}
+
+.width-column-class {
+  width: 10% !important;
+}
+.width-column-status {
+  width: 10% !important;
+}
+
+.width-column-action {
+  width: 10% !important;
+}
+
+.custom-eclipse {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* max-width: 18%; */
+  white-space: nowrap;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}

@@ -1,0 +1,63 @@
+<div>
+  <div class="flex justify-end items-center gap-4">
+    <mat-form-field color="accent">
+      <input
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchTermChange()"
+        matInput
+        class="text-white"
+        placeholder="Search"
+      />
+    </mat-form-field>
+    <button
+      mat-button
+      class="p-1 bg-[#607d8b] text-white"
+      (click)="resetAllFilter()"
+    >
+      All Title
+    </button>
+  </div>
+  <div class="mt-4">
+    <mat-tab-group (selectedTabChange)="onTabClick($event)">
+      <div *ngFor="let tab of listMenuTab">
+        <mat-tab [label]="tab" class="flex justify-between items-center gap-4">
+          <div
+            *ngIf="filteredRncpTitleData"
+            class="flex flex-wrap justify-center gap-10 pt-8"
+            [ngStyle]="{ 'max-height': 'calc(100vh - 220px)' }"
+          >
+            <div *ngFor="let data of filteredRncpTitleData" class="">
+              <div
+                class="w-80 min-h-[250px] max-h-[250px] p-4 bg-[#607d8a] hover:bg-[#d28108] rounded-3xl shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out"
+              >
+                <div class="flex flex-col items-center p-4 gap-2">
+                  <div
+                    class="border-b-[1px] mb-0.5 border-white w-5/6 px-3 flex justify-center"
+                  >
+                    <h2 class="text-xl text-center font-semibold !p-0 !m-0">
+                      {{ data?.short_name | uppercase }}
+                    </h2>
+                  </div>
+                  <p class="font-light text-center !m-0">
+                    {{ data?.long_name }}
+                  </p>
+                  <div class="flex flex-col items-center gap-2">
+                    <p class="text-center !m-0">Level {{ data?.rncp_level }}</p>
+                    <p class="text-center font-bold !m-0">
+                      {{ data?.certifier?.short_name | uppercase }}
+                    </p>
+                    <div
+                      class="flex items-center justify-center h-7 w-7 rounded-full bg-green-600"
+                    >
+                      <mat-icon>check_circle_outline</mat-icon>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </div>
+    </mat-tab-group>
+  </div>
+</div>

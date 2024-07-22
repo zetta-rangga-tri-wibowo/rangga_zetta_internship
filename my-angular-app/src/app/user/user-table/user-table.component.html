@@ -1,0 +1,331 @@
+<div>
+  <!-- Super Filter Section -->
+  <div>
+    <!-- Filter for Titles -->
+    <div>Super Filter</div>
+    <div class="bg-[#696969] flex gap-2">
+      <!-- Title Dropdown -->
+      <ng-select
+        [items]="dropdownTitle"
+        bindLabel="short_name"
+        bindValue="_id"
+        placeholder="Select a Title"
+        [(ngModel)]="selectedTitleFilter"
+        (change)="filterTitle($event)"
+        (close)="getClassesByRncp()"
+      >
+      </ng-select>
+
+      <!-- Filter for Classes -->
+      <div class="bg-red-300">
+        <ng-select
+          [disabled]="dropdownClasses?.length === 0"
+          [items]="dropdownClasses"
+          bindLabel="name"
+          bindValue="_id"
+          placeholder="Select a Class"
+          [(ngModel)]="selectedFilterClasses"
+          (change)="filterClases($event)"
+          (close)="getSchoolByIdClasses()"
+        >
+        </ng-select>
+      </div>
+
+      <!-- Filter for Schools -->
+      <ng-select
+        [items]="dropdownSchool"
+        bindLabel="short_name"
+        bindValue="_id"
+        placeholder="Select School"
+        [(ngModel)]="selectedSchoolId"
+        (change)="filterSchool($event)"
+        (close)="getSchoolId()"
+      >
+      </ng-select>
+
+      <!-- Apply Filters Button -->
+      <button mat-raised-button (click)="appyFilter()">Apply</button>
+      <button mat-raised-button (click)="resetFilter()">Reset</button>
+    </div>
+
+    <!-- Add User Button -->
+    <div>
+      <button mat-raised-button (click)="addUser()">Add User</button>
+    </div>
+  </div>
+
+  <!-- Table Section -->
+  <div>
+    <!-- Table Display -->
+    <table
+      *ngIf="!loading"
+      mat-table
+      [dataSource]="dataSource"
+      class="w-full border-4 border-[#607D8A]"
+    >
+      <!-- Name Column -->
+      <ng-container matColumnDef="first_name">
+        <th
+          class="border border-[#696969] font-bold width-short-name"
+          mat-header-cell
+          *matHeaderCellDef
+        >
+          Name
+        </th>
+        <td mat-cell *matCellDef="let element" class="border border-[#696969]">
+          {{ element?.last_name }} {{ element?.first_name }}
+        </td>
+      </ng-container>
+
+      <!-- Full Name Filter Column -->
+      <ng-container matColumnDef="full_name">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field>
+            <input
+              matInput
+              [(ngModel)]="filterTable.full_name"
+              (keyup)="filterName($event)"
+              placeholder="Name"
+            />
+          </mat-form-field>
+        </th>
+      </ng-container>
+
+      <!-- Created Date Column -->
+      <ng-container matColumnDef="created_date">
+        <th
+          class="border border-[#696969] font-bold width-short-name"
+          mat-header-cell
+          *matHeaderCellDef
+        >
+          Created Date
+        </th>
+        <td mat-cell *matCellDef="let element" class="border border-[#696969]">
+          {{ element.created_at | date }}
+        </td>
+      </ng-container>
+
+      <!-- Created Date Filter Column -->
+      <ng-container matColumnDef="created_date_filter">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field>
+            <mat-label>Created Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              [formControl]="dateFilter"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </th>
+      </ng-container>
+
+      <!-- School Column -->
+      <ng-container matColumnDef="school">
+        <th
+          class="border border-[#696969] font-bold width-short-name"
+          mat-header-cell
+          *matHeaderCellDef
+        >
+          School
+        </th>
+        <td mat-cell *matCellDef="let element" class="border border-[#696969]">
+          {{ element && getSchoolColumn(element) }}
+          <div *ngIf="schoolName.length > 0">
+            <span *ngFor="let school of schoolName">
+              {{ school }}
+            </span>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- School Filter Column -->
+      <ng-container matColumnDef="school_filter">
+        <th mat-header-cell *matHeaderCellDef>
+          <!-- Filter can be added here if needed -->
+        </th>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th
+          class="border border-[#696969] font-bold width-short-name"
+          mat-header-cell
+          *matHeaderCellDef
+        >
+          Titles
+        </th>
+        <td mat-cell *matCellDef="let element" class="border border-[#696969]">
+          <div class="flex flex-wrap gap-1 width-column">
+            <div
+              class="eclipse-custome"
+              *ngFor="let data of getUniqueEntities(element.entities)"
+            >
+              {{ data.assigned_rncp_title.short_name }}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Title Filter Column -->
+      <ng-container matColumnDef="title_filter">
+        <th mat-header-cell *matHeaderCellDef>
+          <!-- Filter can be added here if needed -->
+        </th>
+      </ng-container>
+
+      <!-- Class Column -->
+      <ng-container matColumnDef="class">
+        <th
+          class="border border-[#696969] font-bold width-short-name"
+          mat-header-cell
+          *matHeaderCellDef
+        >
+          Class
+        </th>
+        <td mat-cell *matCellDef="let element" class="border border-[#696969]">
+          <div
+            class="eclipse-custome"
+            *ngFor="let data of getUniqueEntities(element.entities)"
+          >
+            {{ data.class?.name }}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Class Filter Column -->
+      <ng-container matColumnDef="class_filter">
+        <th mat-header-cell *matHeaderCellDef>
+          <!-- Filter can be added here if needed -->
+        </th>
+      </ng-container>
+
+      <!-- User Type Column -->
+      <ng-container matColumnDef="user_type">
+        <th
+          class="border border-[#696969] font-bold width-short-name"
+          mat-header-cell
+          *matHeaderCellDef
+        >
+          User Type
+        </th>
+        <td mat-cell *matCellDef="let element" class="border border-[#696969]">
+          <div
+            class="eclipse-custome"
+            *ngFor="let data of getUniqueEntitiesCustom(element.entities, 'type')"
+          >
+            {{ data.type.name }}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- User Type Filter Column -->
+      <ng-container matColumnDef="user_type_filter">
+        <th mat-header-cell *matHeaderCellDef>
+          <ng-select
+            [items]="userType"
+            bindLabel="name"
+            bindValue="_id"
+            placeholder="Select a user type"
+            [(ngModel)]="selectedUserType"
+            (change)="filterUserType2($event)"
+          >
+          </ng-select>
+        </th>
+      </ng-container>
+
+      <!-- Entity Column -->
+      <ng-container matColumnDef="entity">
+        <th
+          class="border border-[#696969] font-bold width-short-name"
+          mat-header-cell
+          *matHeaderCellDef
+        >
+          Entity
+        </th>
+        <td mat-cell *matCellDef="let element" class="border border-[#696969]">
+          <div
+            class="eclipse-custome"
+            *ngFor="
+              let data of getUniqueEntitiesCustom(element.entities, 'entity_name')
+            "
+          >
+            {{ data.entity_name }}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Entity Filter Column -->
+      <ng-container matColumnDef="entity_filter">
+        <th mat-header-cell *matHeaderCellDef>
+          <!-- Filter can be added here if needed -->
+        </th>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th
+          class="border border-[#696969] font-bold width-short-name"
+          mat-header-cell
+          *matHeaderCellDef
+        >
+          Status
+        </th>
+        <td mat-cell *matCellDef="let element" class="border border-[#696969]">
+          {{ element.status }}
+        </td>
+      </ng-container>
+
+      <!-- Status Filter Column -->
+      <ng-container matColumnDef="status_filter">
+        <th mat-header-cell *matHeaderCellDef>
+          <!-- Filter can be added here if needed -->
+        </th>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th
+          class="border border-[#696969] font-bold width-short-name"
+          mat-header-cell
+          *matHeaderCellDef
+        >
+          Action
+        </th>
+        <td mat-cell *matCellDef="let element" class="border border-[#696969]">
+          <button mat-raised-button color="accent" (click)="onEditView(element._id)">View - Edit</button>
+        </td>
+      </ng-container>
+
+      <!-- Table Rows -->
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"
+        class="border border-[#696969]"
+      ></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnFilters"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        class="border border-[#696969]"
+      ></tr>
+    </table>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="flex justify-center items-center pt-64 pb-64">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <!-- Pagination -->
+    <mat-paginator
+      [length]="totalUser"
+      [pageSize]="pagination.limit"
+      [pageSizeOptions]="[5, 10, 20]"
+      (page)="onPageChange($event)"
+    ></mat-paginator>
+  </div>
+</div>

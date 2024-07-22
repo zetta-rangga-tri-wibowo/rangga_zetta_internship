@@ -1,0 +1,37 @@
+<mat-card>
+  <!-- Form for user view/edit -->
+  <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+
+    <!-- Civility Selection -->
+    <!-- Provides radio button options for selecting civility (Mr or Mrs) -->
+    <mat-radio-group aria-label="Select civility" formControlName="civility">
+      <mat-radio-button value="MR">Mr</mat-radio-button>
+      <mat-radio-button value="MRS">Mrs</mat-radio-button>
+    </mat-radio-group>
+
+    <!-- First Name Field -->
+    <!-- Input field for the user's first name -->
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName">
+    </mat-form-field>
+
+    <!-- Last Name Field -->
+    <!-- Input field for the user's last name -->
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName">
+    </mat-form-field>
+
+    <!-- Email Field -->
+    <!-- Input field for the user's email -->
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email">
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <!-- Button to submit the form and trigger the saveUser method -->
+    <button mat-raised-button color="primary" type="submit">Update</button>
+  </form>
+</mat-card>

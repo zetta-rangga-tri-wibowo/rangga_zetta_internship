@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // apiUrl: 'https://api.features-v2.zetta-demo.space/graphql',
+  apiUrl: 'https://api.delivery-a.zetta-demo.space/graphql',
+  tokenKey: 'token',
 };
 
 /*

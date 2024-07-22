@@ -1,0 +1,20 @@
+<!-- *************** Section: Tab Group *************** -->
+<mat-tab-group (selectedTabChange)="onTabUserClick($event)">
+  <!-- *************** Tab: Active Users of Active Classes *************** -->
+  <mat-tab label="Active Users of Active Classes">
+    <!-- *************** Component: User Table with Tab Index *************** -->
+    <app-user-table [tabIndex]="tabUserIndex"></app-user-table>
+  </mat-tab>
+
+  <!-- *************** Tab: Active Users of Non Active Classes *************** -->
+  <mat-tab label="Active Users of Non Active Classes">
+    <!-- *************** Component: User Table with Tab Index *************** -->
+    <app-user-table [tabIndex]="tabUserIndex"></app-user-table>
+  </mat-tab>
+
+  <!-- *************** Tab: Deactivated Users *************** -->
+  <mat-tab label="Deactivated Users">
+    <!-- *************** Component: User Table with Tab Index *************** -->
+    <app-user-table [tabIndex]="tabUserIndex"></app-user-table>
+  </mat-tab>
+</mat-tab-group>
